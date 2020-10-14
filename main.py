@@ -2,7 +2,7 @@ import config
 import requests
 import json
 import datetime
-from datetime import date, timedelta
+# from datetime import date, timedelta
 
 # get bearer token
 data = {
@@ -30,9 +30,7 @@ res = raw.json()
 zone = '1'
 
 # get historical data 
-# params = (('date', '2020-10-12'),)
 params = (('date', str(datetime.date.today() - datetime.timedelta(days=1))),)
-
 raw = requests.get('https://my.tado.com/api/v2/homes/'+str(homeId)+'/zones/'+zone+'/dayReport', headers=headers, params=params)
 res = raw.json()
 
