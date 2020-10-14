@@ -30,7 +30,8 @@ res = raw.json()
 
 # get historical data for zone 1
 zone = '1'
-params = (('date', str(datetime.date.today() - datetime.timedelta(days=1))),)
+params = (('date', str(datetime.date.today() - datetime.timedelta(days=1))),) # <-- set date to yesterday
+# params = (('date','2020-10-13'),) # <-- set a specific date
 raw = requests.get('https://my.tado.com/api/v2/homes/'+str(homeId)+'/zones/'+zone+'/dayReport', headers=headers, params=params)
 res = raw.json()
 
