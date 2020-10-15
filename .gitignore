@@ -2,3 +2,5 @@ config.py
 *.pyc
 .vscode/
 __pycache__/
+*.save
+*.save.*
