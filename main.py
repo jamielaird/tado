@@ -28,10 +28,13 @@ url = 'https://my.tado.com/api/v2/homes/'+str(homeId)+'/zones'
 raw = requests.get(url, headers=headers)
 res = raw.json()
 
+# set query date
+# date = '2020-10-14' # <-- set a specific date
+date = str(datetime.date.today() - datetime.timedelta(days=1)) # <-- set date to yesterday
+
 # get historical data for zone 1
 zone = '1'
-params = (('date', str(datetime.date.today() - datetime.timedelta(days=1))),) # <-- set date to yesterday
-# params = (('date','2020-10-13'),) # <-- set a specific date
+params = (('date',date),)
 raw = requests.get('https://my.tado.com/api/v2/homes/'+str(homeId)+'/zones/'+zone+'/dayReport', headers=headers, params=params)
 res = raw.json()
 
@@ -50,7 +53,7 @@ conn.close()
 
 # get historical data for zone 2
 zone = '2'
-params = (('date', str(datetime.date.today() - datetime.timedelta(days=1))),)
+params = (('date', date),)
 raw = requests.get('https://my.tado.com/api/v2/homes/'+str(homeId)+'/zones/'+zone+'/dayReport', headers=headers, params=params)
 res = raw.json()
 
@@ -69,7 +72,7 @@ conn.close()
 
 # get historical data for zone 3
 zone = '3'
-params = (('date', str(datetime.date.today() - datetime.timedelta(days=1))),)
+params = (('date', date),)
 raw = requests.get('https://my.tado.com/api/v2/homes/'+str(homeId)+'/zones/'+zone+'/dayReport', headers=headers, params=params)
 res = raw.json()
 
@@ -88,7 +91,7 @@ conn.close()
 
 # get historical data for zone 4
 zone = '4'
-params = (('date', str(datetime.date.today() - datetime.timedelta(days=1))),)
+params = (('date', date),)
 raw = requests.get('https://my.tado.com/api/v2/homes/'+str(homeId)+'/zones/'+zone+'/dayReport', headers=headers, params=params)
 res = raw.json()
 
