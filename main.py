@@ -42,9 +42,10 @@ res = raw.json()
 conn = psycopg2.connect('dbname=tado')
 cursor = conn.cursor()
 
-# iterate through results to parse zone, timestamp and temperature and write to postgres (tado.inside_temperature)
+# iterate through results to check date is today, parse zone, timestamp and temperature and write to postgres (tado.inside_temperature)
 for res5 in res['measuredData']['insideTemperature']['dataPoints']:
-    cursor.execute("INSERT INTO inside_temperature (zone, timestamp, temperature) VALUES (%s, %s, %s)",(int(zone),str(res5['timestamp']),float(res5['value']['celsius'])))
+    if str(res5['timestamp'])[:10] == date:
+        cursor.execute("INSERT INTO inside_temperature (zone, timestamp, temperature) VALUES (%s, %s, %s)",(int(zone),str(res5['timestamp']),float(res5['value']['celsius'])))
 
 # commit and close database connection
 conn.commit()
@@ -63,9 +64,12 @@ cursor = conn.cursor()
 
 # iterate through results to parse zone, timestamp and temperature and write to postgres (tado.inside_temperature)
 for res5 in res['measuredData']['insideTemperature']['dataPoints']:
-    cursor.execute("INSERT INTO inside_temperature (zone, timestamp, temperature) VALUES (%s, %s, %s)",(int(zone),str(res5['timestamp']),float(res5['value']['celsius'])))
+    if str(res5['timestamp'])[:10] == date:
+        cursor.execute("INSERT INTO inside_temperature (zone, timestamp, temperature) VALUES (%s, %s, %s)",(int(zone),str(res5['timestamp']),float(res5['value']['celsius'])))
 
-# commit and close database connection
+
+
+# commit and close database connectionfor res5 in res['measuredData']['insideTemperature']['dataPoints']:
 conn.commit()
 cursor.close()
 conn.close()
@@ -82,7 +86,9 @@ cursor = conn.cursor()
 
 # iterate through results to parse zone, timestamp and temperature and write to postgres (tado.inside_temperature)
 for res5 in res['measuredData']['insideTemperature']['dataPoints']:
-    cursor.execute("INSERT INTO inside_temperature (zone, timestamp, temperature) VALUES (%s, %s, %s)",(int(zone),str(res5['timestamp']),float(res5['value']['celsius'])))
+    if str(res5['timestamp'])[:10] == date:
+        cursor.execute("INSERT INTO inside_temperature (zone, timestamp, temperature) VALUES (%s, %s, %s)",(int(zone),str(res5['timestamp']),float(res5['value']['celsius'])))
+
 
 # commit and close database connection
 conn.commit()
@@ -101,7 +107,8 @@ cursor = conn.cursor()
 
 # iterate through results to parse zone, timestamp and temperature and write to postgres (tado.inside_temperature)
 for res5 in res['measuredData']['insideTemperature']['dataPoints']:
-    cursor.execute("INSERT INTO inside_temperature (zone, timestamp, temperature) VALUES (%s, %s, %s)",(int(zone),str(res5['timestamp']),float(res5['value']['celsius'])))
+    if str(res5['timestamp'])[:10] == date:
+        cursor.execute("INSERT INTO inside_temperature (zone, timestamp, temperature) VALUES (%s, %s, %s)",(int(zone),str(res5['timestamp']),float(res5['value']['celsius'])))
 
 # commit and close database connection
 conn.commit()
